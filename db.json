@@ -1,0 +1,37 @@
+{
+  "users": [
+    {
+      "id": "admin",
+      "password": "admin",
+      "name": "administrator",
+      "avatar": "https://i.namu.wiki/i/32c3A-Ftb8xtTw13Id8MAolv_QXVSWv0np7l0Je82GrXe4vmOmoz815taqLmJdzCRTAAwOlDHZHkoeAPW7e9RdF_hpfWkarujccEZQqxh01M_3E_aTm0W4Yp7bKry7rldFsoXDmAgqTR_hFn_vUtZg.webp",
+      "role": "admin",
+      "email": "admin@test.com",
+      "phone": "01012345678"
+    },
+    {
+      "id": "guest",
+      "password": "guest",
+      "name": "guest",
+      "avatar": "https://i.namu.wiki/i/zbqppkumpVCkmE_JZLVL1SrrrX_z7xgPJCvHtWZX3DP9deF1eBnOVLnQb5G32-skD3QLxnifgrHk1TGFHTdEs6nIRWlJ19iK7tSqDu8Vo9TQZ7i7ydMWDCZ8UOWZTYAYfQmmWv3b1M6CPtVwQ_2ehQ.webp",
+      "role": "guest",
+      "email": "guest@test.com",
+      "phone": "01087654321"
+    }
+  ],
+
+  "blogs": [
+    {
+      "title": "blog1",
+      "content": "blog1 content",
+      "author": "admin",
+      "createdAt": "2023-07-25"
+    },
+    {
+      "title": "blog2",
+      "content": "blog2 content",
+      "author": "guest",
+      "createdAt": "2023-07-25"
+    }
+  ]
+}
