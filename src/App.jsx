@@ -1,17 +1,13 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./Home";
-import BlogHome from "./blogs/pages/BlogHome";
-import MyPage from "./users/pages/MyPage";
+import { BrowserRouter } from "react-router-dom";
+import RoutesSetup from "./routesSetup/RoutesSetup";
+import Header from "./common/Header";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/blogs" element={<BlogHome />} />
-          <Route path="/mypage" element={<MyPage />} />
-        </Routes>
+        <Header />
+        <RoutesSetup />
       </BrowserRouter>
     </>
   );
