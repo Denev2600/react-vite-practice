@@ -24,7 +24,7 @@ export default function Header() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             News
           </Typography>
-          <Button variant="text" color="inherit">
+          <Button variant="contained" color="inherit">
             Login
           </Button>
           <Link to="/">
@@ -33,12 +33,12 @@ export default function Header() {
             </Button>
           </Link>
           <Link to="/blogs">
-            <Button variant="contained" color="inherit">
+            <Button variant="text" color="inherit">
               blog
             </Button>
           </Link>
           <Link to="/mypage">
-            <Button variant="outlined" color="inherit">
+            <Button variant="text" color="inherit">
               mypage
             </Button>
           </Link>
