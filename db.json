@@ -19,14 +19,12 @@
       "phone": "01087654321"
     }
   ],
-
   "blogs": [
     {
-      "id": 1,
       "title": "blog1",
-      "content": "blog1 content",
       "author": "admin",
-      "createdAt": "2023-07-25"
+      "createdAt": "2023-7-31",
+      "id": 1
     },
     {
       "id": 2,
@@ -34,6 +32,20 @@
       "content": "blog2 content",
       "author": "guest",
       "createdAt": "2023-07-25"
+    },
+    {
+      "title": "blog3",
+      "content": "blog3 content",
+      "author": "guest",
+      "createdAt": "2023-07-26",
+      "id": 3
+    },
+    {
+      "title": "blog4",
+      "content": "blog4 content",
+      "author": "guest",
+      "createdAt": "2023-07-26",
+      "id": 4
     }
   ]
 }
