@@ -21,10 +21,10 @@
   ],
   "blogs": [
     {
-      "title": "NTD",
-      "content": "New Type Destroyer",
+      "title": "Denev",
+      "content": "nickname",
       "author": "admin",
-      "createdAt": "2023-8-1",
+      "createdAt": "",
       "id": 1
     },
     {
@@ -36,10 +36,42 @@
     },
     {
       "title": "blog3",
-      "content": "blog3 content",
+      "content": "blog2 content",
       "author": "guest",
-      "createdAt": "2023-07-26",
+      "createdAt": "2023-8-2",
       "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "blogId": 1,
+      "author": "guest",
+      "content": "guest1 reply"
+    },
+    {
+      "id": 2,
+      "blogId": 1,
+      "author": "admin",
+      "content": "Warning"
+    },
+    {
+      "content": "hi",
+      "author": "guest",
+      "blogId": "1",
+      "id": 3
+    },
+    {
+      "content": "what's wrong?",
+      "author": "guest",
+      "blogId": "1",
+      "id": 4
+    },
+    {
+      "content": "please reply",
+      "author": "guest",
+      "blogId": "1",
+      "id": 5
     }
   ]
 }

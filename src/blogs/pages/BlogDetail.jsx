@@ -10,6 +10,8 @@ export default function BlogDetail() {
   const [content, setContent] = useState("");
   const [update, setUpdate] = useState(true);
   const [createdAt, setCreatedAt] = useState("");
+  const [comments, setComments] = useState([]);
+  const [cmcontent, setCmcontent] = useState("");
   const navigate = useNavigate();
 
   const getBlogs = (id) => {
@@ -23,6 +25,19 @@ export default function BlogDetail() {
       });
   };
 
+  const getComments = (id) => {
+    axios
+      .get(`http://localhost:8085/blogs/${id}/comments`)
+      .then((res) => {
+        setComments(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  console.log(comments);
+
   const handleTitle = (e) => {
     setTitle(e.target.value);
   };
@@ -35,6 +50,10 @@ export default function BlogDetail() {
     setTitle(blog.title);
     setContent(blog.content);
     setUpdate(!update);
+  };
+
+  const handleComments = (e) => {
+    setCmcontent(e.target.value);
   };
 
   const getCreatedAt = () => {
@@ -60,6 +79,26 @@ export default function BlogDetail() {
           console.log(err);
         });
     }
+  };
+
+  const handleCommentsAdd = () => {
+    if (!window.confirm("등록하시겠습니까?")) return;
+
+    axios
+      .post(`http://localhost:8085/blogs/${id}/comments`, {
+        content: cmcontent,
+        author: "guest",
+        blogId: parseInt(id),
+      })
+      .then((res) => {
+        console.log(res);
+        getBlogs(id);
+        getComments(id);
+        setCmcontent("");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const updateBlog = (id, title, content, author, createdAt) => {
@@ -94,82 +133,117 @@ export default function BlogDetail() {
 
   useEffect(() => {
     getBlogs(id);
+    getComments(id);
   }, [id]);
 
   return (
     <>
       {update ? (
-        <Box
-          sx={{
-            backgroundColor: "lightblue",
-            border: "2px solid lightskyblue",
-            borderRadius: "10px 10px 10px 10px / 10px 10px 10px 10px",
-            padding: "0 1rem",
-          }}
-        >
-          <div className="detail">
-            <h1>{blog.title}</h1>
-            <h3>{blog.content}</h3>
-            <p>작성자: {blog.author}</p>
-            <p>게시 날짜: {blog.createdAt}</p>
+        <div>
+          <Box
+            sx={{
+              backgroundColor: "lightblue",
+              border: "2px solid lightskyblue",
+              borderRadius: "10px 10px 10px 10px / 10px 10px 10px 10px",
+              padding: "0 1rem",
+            }}
+          >
+            <div className="detail">
+              <h1>{blog.title}</h1>
+              <h3>{blog.content}</h3>
+              <p>작성자: {blog.author}</p>
+              <p>게시 날짜: {blog.createdAt}</p>
 
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                handleRemove(blog.id);
-              }}
-            >
-              삭제
-            </button>
-            <button onClick={handleEditor}>수정</button>
-          </div>
-        </Box>
-      ) : (
-        <Box
-          sx={{
-            border: "2px solid lightgreen",
-            borderRadius: "10px 10px 10px 10px / 10px 10px 10px 10px",
-            padding: "0 1rem",
-          }}
-        >
-          <div>
-            <h2> 글 수정 </h2>
-            <form>
-              <input type="text" onChange={handleTitle} value={title} />
-              <br />
-              <textarea onChange={handleContent} value={content} />
-              <br />
-              <button
-                type="submit"
-                onClick={(e) => {
-                  e.preventDefault();
-                  updatePost(id);
-                }}
-              >
-                수정
-              </button>
               <button
                 onClick={(e) => {
                   e.preventDefault();
-                  setTitle("");
-                  setContent("");
+                  handleRemove(blog.id);
                 }}
               >
-                재작성
+                삭제
               </button>
+              <button onClick={handleEditor}>수정</button>
+              <br />
+              <br />
+              <input type="text" onChange={handleComments} value={cmcontent} />
+              <button onClick={handleCommentsAdd}>등록</button>
               <button
-                type="button"
                 onClick={() => {
-                  setTitle(blog.title);
-                  setContent(blog.content);
-                  setUpdate(true);
+                  setCmcontent("");
                 }}
               >
                 취소
               </button>
-            </form>
-          </div>
-        </Box>
+            </div>
+          </Box>
+          {comments && (
+            <div>
+              {comments.map((data) => (
+                <Box
+                  sx={{
+                    backgroundColor: "lightskyblue",
+                    border: "2px solid lightgrey",
+                    borderRadius: "10px 10px 10px 10px / 10px 10px 10px 10px",
+                    padding: "0 1rem",
+                  }}
+                  key={data.id}
+                >
+                  <p>
+                    <b>{data.author}</b> : {data.content}
+                  </p>
+                </Box>
+              ))}
+            </div>
+          )}
+        </div>
+      ) : (
+        <>
+          <Box
+            sx={{
+              border: "2px solid lightgreen",
+              borderRadius: "10px 10px 10px 10px / 10px 10px 10px 10px",
+              padding: "0 1rem",
+            }}
+          >
+            <div>
+              <h2> 글 수정 </h2>
+              <form>
+                <input type="text" onChange={handleTitle} value={title} />
+                <br />
+                <textarea onChange={handleContent} value={content} />
+                <br />
+                <button
+                  type="submit"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    updatePost(id);
+                  }}
+                >
+                  수정
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setTitle("");
+                    setContent("");
+                  }}
+                >
+                  재작성
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setTitle(blog.title);
+                    setContent(blog.content);
+                    setUpdate(true);
+                  }}
+                >
+                  취소
+                </button>
+              </form>
+            </div>
+          </Box>
+        </>
       )}
     </>
   );
