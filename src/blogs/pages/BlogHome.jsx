@@ -17,58 +17,22 @@ export default function BlogHome() {
       });
   };
 
-  const handleRemove = (id) => {
-    if (window.confirm("정말 삭제하시겠습니까?") === false) {
-      return;
-    } else {
-      axios
-        .delete(`http://localhost:8085/blogs/${id}`)
-        .then((res) => {
-          console.log(res);
-          getBlogs();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  };
-
-  const updateBlog = (id, title, content, author, createdAt) => {
-    axios
-      .put(`http://localhost:8085/blogs/${id}`, {
-        title,
-        content,
-        author,
-        createdAt,
-      })
-      .then((res) => {
-        console.log(res);
-        getBlogs();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   useEffect(() => {
     getBlogs();
   }, []);
 
-  console.log(blog);
-
   return (
     <>
-      <Link to="/blogCreate">
+      <Link to="/blogs/create">
         <button>글 작성</button>
       </Link>
 
-      {blog.map((data) => (
+      {blog.map((data,idx) => (
+        <div key={idx}>
         <BlogItems
-          key={data.id}
           blog={data}
-          handleRemove={handleRemove}
-          updateBlog={updateBlog}
         />
+        </div>
       ))}
     </>
   );

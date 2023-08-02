@@ -46,9 +46,14 @@ export default function BlogCreate() {
     e.preventDefault();
     if (title === "" || content === "" || author === "") {
       window.alert("빈 내용이 있습니다. 확인해주세요.");
-    } else {
+    } 
+    else if(window.confirm("글을 게시하시겠습니까?") === false){
+      return;
+    }
+    else {
       setCreatedAt(new Date());
       addBlog();
+      window.alert("게시되었습니다.");
     }
   };
 
