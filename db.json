@@ -21,8 +21,8 @@
   ],
   "blogs": [
     {
-      "title": "Denev",
-      "content": "nickname",
+      "title": "post",
+      "content": "post by denev",
       "author": "admin",
       "createdAt": "",
       "id": 1
@@ -60,18 +60,6 @@
       "author": "guest",
       "blogId": "1",
       "id": 3
-    },
-    {
-      "content": "what's wrong?",
-      "author": "guest",
-      "blogId": "1",
-      "id": 4
-    },
-    {
-      "content": "please reply",
-      "author": "guest",
-      "blogId": "1",
-      "id": 5
     }
   ]
 }

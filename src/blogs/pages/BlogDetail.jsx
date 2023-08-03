@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import BlogComments from "./components/BlogComments";
 
 export default function BlogDetail() {
   const { id } = useParams();
@@ -81,8 +82,22 @@ export default function BlogDetail() {
     }
   };
 
+  const handleCommentRemove = (cid) => {
+    if (!window.confirm("댓글을 삭제하시겠습니까?")) return;
+    axios
+      .delete(`http://localhost:8085/comments/${cid}`)
+      .then((res) => {
+        console.log(res);
+        getComments(id);
+        alert("댓글이 삭제되었습니다.");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const handleCommentsAdd = () => {
-    if (!window.confirm("등록하시겠습니까?")) return;
+    if (!window.confirm("댓글을 등록하시겠습니까?")) return;
 
     axios
       .post(`http://localhost:8085/blogs/${id}/comments`, {
@@ -142,10 +157,11 @@ export default function BlogDetail() {
         <div>
           <Box
             sx={{
-              backgroundColor: "lightblue",
-              border: "2px solid lightskyblue",
+              backgroundColor: "lightskyblue",
+              border: "2px solid blue",
               borderRadius: "10px 10px 10px 10px / 10px 10px 10px 10px",
               padding: "0 1rem",
+              margin: "7px",
             }}
           >
             <div className="detail">
@@ -179,19 +195,12 @@ export default function BlogDetail() {
           {comments && (
             <div>
               {comments.map((data) => (
-                <Box
-                  sx={{
-                    backgroundColor: "lightskyblue",
-                    border: "2px solid lightgrey",
-                    borderRadius: "10px 10px 10px 10px / 10px 10px 10px 10px",
-                    padding: "0 1rem",
-                  }}
-                  key={data.id}
-                >
-                  <p>
-                    <b>{data.author}</b> : {data.content}
-                  </p>
-                </Box>
+                <div key={data.id}>
+                  <BlogComments
+                    comments={data}
+                    handleCommentRemove={handleCommentRemove}
+                  />
+                </div>
               ))}
             </div>
           )}
@@ -203,6 +212,7 @@ export default function BlogDetail() {
               border: "2px solid lightgreen",
               borderRadius: "10px 10px 10px 10px / 10px 10px 10px 10px",
               padding: "0 1rem",
+              margin: "7px",
             }}
           >
             <div>
