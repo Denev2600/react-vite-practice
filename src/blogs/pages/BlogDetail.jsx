@@ -169,7 +169,6 @@ export default function BlogDetail() {
               <h3>{blog.content}</h3>
               <p>작성자: {blog.author}</p>
               <p>게시 날짜: {blog.createdAt}</p>
-
               <button
                 onClick={(e) => {
                   e.preventDefault();
@@ -181,6 +180,7 @@ export default function BlogDetail() {
               <button onClick={handleEditor}>수정</button>
               <br />
               <br />
+              guest :{" "}
               <input type="text" onChange={handleComments} value={cmcontent} />
               <button onClick={handleCommentsAdd}>등록</button>
               <button

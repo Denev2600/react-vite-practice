@@ -7,7 +7,7 @@ import NavLinks from "./NavLinks";
 
 export default function Header() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, marginBottom: "5px" }}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
