@@ -1,6 +1,27 @@
 /* eslint-disable react/prop-types */
-import { Box } from "@mui/material";
+import { Box, Avatar } from "@mui/material";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 export default function BlogComments({ comments, handleCommentRemove }) {
+  const [avatar, setAvatar] = useState("");
+
+  const getAvatar = (id) => {
+    axios
+      .get(`http://localhost:8085/users/${id}`)
+      .then((res) => {
+        console.log(res);
+        setAvatar(res.data.avatar);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getAvatar(comments.author);
+  }, [comments.author]);
+
   return (
     <>
       <Box
@@ -13,6 +34,7 @@ export default function BlogComments({ comments, handleCommentRemove }) {
         }}
       >
         <p>
+          <Avatar alt={comments.author} src={avatar} />
           <b>{comments.author}</b> : {comments.content}{" "}
           <button
             onClick={(e) => {
