@@ -40,6 +40,55 @@
       "author": "guest",
       "createdAt": "2023-8-9",
       "id": 3
+    },
+    {
+      "title": "d",
+      "content": "d",
+      "author": "admin",
+      "createdAt": "2023-8-9",
+      "id": 4
+    },
+    {
+      "title": "galaxy Z series",
+      "content": "avaiable",
+      "author": "guest",
+      "createdAt": "2023-8-9",
+      "id": 5
+    },
+    {
+      "title": "sdfd",
+      "content": "dskfjksdj",
+      "author": "guest",
+      "createdAt": "2023-8-9",
+      "id": 6
+    },
+    {
+      "title": "sdfsdf",
+      "content": "sdfsdf",
+      "author": "admin",
+      "createdAt": "2023-8-9",
+      "id": 7
+    },
+    {
+      "title": "=====도배 방지 선====",
+      "content": "좀 그만;;;",
+      "author": "guest",
+      "createdAt": "2023-8-9",
+      "id": 8
+    },
+    {
+      "title": "싫은데?",
+      "content": "계속 ㄱㄱ",
+      "author": "guest",
+      "createdAt": "2023-8-9",
+      "id": 9
+    },
+    {
+      "title": "sdfkjsdklfjk",
+      "content": "ksdfjlksdjkfj",
+      "author": "guest",
+      "createdAt": "2023-8-9",
+      "id": 10
     }
   ],
   "comments": [
