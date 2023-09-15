@@ -17,7 +17,7 @@ export default function BlogDetail() {
 
   const getBlogs = (id) => {
     axios
-      .get(`http://localhost:8085/blogs/${id}`)
+      .get(`http://localhost:8080/board/view/${id}`)
       .then((res) => {
         setBlog(res.data);
       })
@@ -28,7 +28,7 @@ export default function BlogDetail() {
 
   const getComments = (id) => {
     axios
-      .get(`http://localhost:8085/blogs/${id}/comments`)
+      .get(`http://localhost:8080/board/view/${id}/comments`)
       .then((res) => {
         setComments(res.data);
       })
@@ -70,7 +70,7 @@ export default function BlogDetail() {
       return;
     } else {
       axios
-        .delete(`http://localhost:8085/blogs/${id}`)
+        .delete(`http://localhost:8080/board/delete/${id}`)
         .then((res) => {
           console.log(res);
           navigate("/blogs");
@@ -85,7 +85,7 @@ export default function BlogDetail() {
   const handleCommentRemove = (cid) => {
     if (!window.confirm("댓글을 삭제하시겠습니까?")) return;
     axios
-      .delete(`http://localhost:8085/comments/${cid}`)
+      .delete(`http://localhost:8080/board/view/comments/delete/${cid}`)
       .then((res) => {
         console.log(res);
         getComments(id);
@@ -100,10 +100,10 @@ export default function BlogDetail() {
     if (!window.confirm("댓글을 등록하시겠습니까?")) return;
 
     axios
-      .post(`http://localhost:8085/blogs/${id}/comments`, {
+      .post(`http://localhost:8080/board/view/${id}/comments`, {
         content: cmcontent,
         author: "guest",
-        blogId: parseInt(id),
+        postId: parseInt(id),
       })
       .then((res) => {
         console.log(res);
@@ -116,13 +116,11 @@ export default function BlogDetail() {
       });
   };
 
-  const updateBlog = (id, title, content, author, createdAt) => {
+  const updateBlog = (id, title, content) => {
     axios
-      .put(`http://localhost:8085/blogs/${id}`, {
+      .put(`http://localhost:8080/board/update/${id}`, {
         title,
         content,
-        author,
-        createdAt,
       })
       .then((res) => {
         console.log(res);

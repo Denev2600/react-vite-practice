@@ -23,11 +23,9 @@ export default function BlogCreate() {
 
   const addBlog = () => {
     axios
-      .post("http://localhost:8085/blogs", {
+      .post("http://localhost:8080/board/writedo", {
         title,
         content,
-        author,
-        createdAt,
       })
       .then((res) => {
         console.log(res);
@@ -44,13 +42,11 @@ export default function BlogCreate() {
 
   const addFunction = (e) => {
     e.preventDefault();
-    if (title === "" || content === "" || author === "") {
+    if (title === "" || content === "") {
       window.alert("빈 내용이 있습니다. 확인해주세요.");
-    } 
-    else if(window.confirm("글을 게시하시겠습니까?") === false){
+    } else if (window.confirm("글을 게시하시겠습니까?") === false) {
       return;
-    }
-    else {
+    } else {
       setCreatedAt(new Date());
       addBlog();
       window.alert("게시되었습니다.");
@@ -86,12 +82,12 @@ export default function BlogCreate() {
           value={content}
         />
         <br />
-        <input
+        {/* <input
           type="text"
           placeholder="author"
           onChange={handleAuthor}
           value={author}
-        />
+        /> */}
         <br />
         <br />
         <button type="submit" onClick={addFunction}>

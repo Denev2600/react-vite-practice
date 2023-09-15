@@ -20,16 +20,17 @@ export default function BreadcrumbsNavigation() {
 
   return (
     <AppBar
-      position="fixed"
+      position="static"
       sx={{
         top: 48,
-        backgroundColor: "white",
+        backgroundColor: "#A9E2F3",
         boxShow: "none",
         borderBottom: "1px solid #e0e0e0",
-        margin: "10px",
+        marginBottom: "7px",
+        justifyContent: "left",
       }}
     >
-      <Container size="sm">
+      <Container maxWidth={false}>
         <Breadcrumbs size="sm" separator=">">
           {crumbs}
         </Breadcrumbs>

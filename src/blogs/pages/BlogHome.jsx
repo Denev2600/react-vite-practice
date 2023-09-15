@@ -8,14 +8,21 @@ export default function BlogHome() {
   const [blog, setBlog] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [page, setPage] = useState(1);
+  const [size, setSize] = useState(0);
+  const [keyword, setKeyword] = useState("");
 
   const getBlogs = () => {
     axios
-      .get(`http://localhost:8085/blogs?_page=${page}&_limit=3`)
+      .get(
+        `http://localhost:8080/board/list?page=${
+          page - 1
+        }&size=${size}&searchKeyword=${keyword}`
+      )
       .then((res) => {
-        setBlog(res.data);
-        setTotalPages(res.headers["x-total-count"]);
-        console.log(totalPages);
+        setBlog(res.data.content);
+        setTotalPages(res.data.totalElements);
+        setSize(res.data.size);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -35,6 +42,23 @@ export default function BlogHome() {
       <Link to="/blogs/create">
         <button>글 작성</button>
       </Link>
+      <form>
+        <input
+          placeholder="검색어"
+          onChange={(e) => {
+            setKeyword(e.target.value);
+          }}
+        ></input>
+        <button
+          type="submit"
+          onClick={(e) => {
+            e.preventDefault();
+            getBlogs();
+          }}
+        >
+          검색
+        </button>
+      </form>
 
       {blog.map((data, idx) => (
         <div key={idx}>
@@ -43,7 +67,7 @@ export default function BlogHome() {
       ))}
       <Pagination
         page={page}
-        count={Math.ceil(totalPages / 4)}
+        count={Math.ceil(totalPages / 10)}
         onChange={handlePageChange}
         color="primary"
         sx={{ display: "flex", justifyContent: "center", marginBottom: 2 }}

@@ -7,9 +7,11 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <BreadcrumbsNavigation />
         <Header />
-        <RoutesSetup />
+        <main>
+          <BreadcrumbsNavigation />
+          <RoutesSetup />
+        </main>
       </BrowserRouter>
     </>
   );
