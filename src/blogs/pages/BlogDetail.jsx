@@ -37,8 +37,6 @@ export default function BlogDetail() {
       });
   };
 
-  console.log(comments);
-
   const handleTitle = (e) => {
     setTitle(e.target.value);
   };
@@ -131,6 +129,20 @@ export default function BlogDetail() {
       });
   };
 
+  const handleCommentEdit = (id, content) => {
+    axios
+      .put(`http://localhost:8080/board/view/comments/update/${id}`, {
+        content,
+      })
+      .then((res) => {
+        console.log(res);
+        getComments(id);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const updatePost = (id) => {
     if (title === "" || content === "") {
       alert("제목이나 내용이 없습니다.");
@@ -197,6 +209,7 @@ export default function BlogDetail() {
                   <BlogComments
                     comments={data}
                     handleCommentRemove={handleCommentRemove}
+                    handleCommentEdit={handleCommentEdit}
                   />
                 </div>
               ))}
